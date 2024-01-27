@@ -6,9 +6,8 @@ import updater from './updater';
 import bot from './bot';
 
 (async () => {
-  const promises = [updater.init(), bot.init()];
-
-  await Promise.all(promises);
+  await updater.init();
+  await bot.init();
 
   console.log('Process initialized.')
 })();
