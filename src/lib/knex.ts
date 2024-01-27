@@ -6,11 +6,7 @@ import config from '../knexfile';
 import keys from "../util/keys";
 import env from "../util/env";
 
-import {Player, PlayerServer} from "../typings/players";
-import {Server} from "../typings/server";
-import {Death} from "../typings/death";
-import {Incap} from "../typings/incap";
-import {Revive} from "../typings/revive";
+import {Player, PlayerServer, Server, Death, Incap, Revive} from '../types';
 
 const db = knex(config);
 
@@ -27,7 +23,7 @@ export async function getServers() {
     .select('name');
 
   if (env.DEBUG) {
-    console.log(`getServers took ${performance.now() - start}ms`);
+    console.log(`getServers found ${servers.length} and took ${performance.now() - start}ms`);
   }
 
   return servers;
@@ -45,7 +41,7 @@ export async function getPlayers() {
     .whereNotNull('lastName');
 
   if (env.DEBUG) {
-    console.log(`getPlayers took ${performance.now() - start}ms`);
+    console.log(`getPlayers found ${players.length} and took ${performance.now() - start}ms`);
   }
 
   return players;
@@ -68,7 +64,7 @@ export async function getDeaths() {
     .where(`${keys.TABLE_DEATHS}.time`, '>=', env.SEASON_START);
 
   if (env.DEBUG) {
-    console.log(`getDeaths took ${performance.now() - start}ms`);
+    console.log(`getDeaths found ${deaths.length} and took ${performance.now() - start}ms`);
   }
 
   return deaths;
@@ -92,7 +88,7 @@ export async function getIncaps() {
 
 
   if (env.DEBUG) {
-    console.log(`getIncaps took ${performance.now() - start}ms`);
+    console.log(`getIncaps found ${incaps.length} and took ${performance.now() - start}ms`);
   }
 
   return incaps;
@@ -114,7 +110,7 @@ export async function getRevives() {
     .where(`${keys.TABLE_REVIVES}.time`, '>=', env.SEASON_START);
 
   if (env.DEBUG) {
-    console.log(`getRevives took ${performance.now() - start}ms`);
+    console.log(`getRevives found ${revives.length} records and took ${performance.now() - start}ms`);
   }
 
   return revives;
@@ -147,6 +143,7 @@ export async function initPlayers(players: Player[]) {
     tkd: 0,
     rating: 0,
     damage: 0,
+    matchCount: 0,
     matches: new Set<number>(),
     ke: 0,
     de: 0

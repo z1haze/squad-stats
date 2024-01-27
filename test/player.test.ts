@@ -1,12 +1,12 @@
-import {describe, it, expect, afterAll} from "@jest/globals";
+import { afterAll, describe, expect, it } from '@jest/globals';
 
-import redis from "../src/lib/redis";
-import {getPlayerServerRating, addIncap, addDeath, addRevive} from "../src/lib/player";
-import {Player, PlayerServer} from "../src/typings/players";
+import redis from '../src/lib/redis';
+import { addDeath, addIncap, addRevive, getPlayerServerRating } from '../src/lib/player';
+import { PlayerServer } from '../src/types';
 
 const playerServer: PlayerServer = {
   id: 1,
-  name: "test",
+  name: 'test',
   incaps: 0, // used
   kills: 0, // used
   falls: 0, // used
@@ -22,10 +22,10 @@ const playerServer: PlayerServer = {
   matchCount: 0,
   ke: 0,
   de: 0
-}
+};
 
-describe("Player Ratings", () => {
-  it("A player rating should be valid", async () => {
+describe('Player Ratings', () => {
+  it('A player rating should be valid', async () => {
     const rating = getPlayerServerRating({
       ...playerServer,
       kills: 2500,
@@ -41,7 +41,7 @@ describe("Player Ratings", () => {
   });
 });
 
-describe("Player Stats Updates", () => {
+describe('Player Stats Updates', () => {
   const attacker = {
     steamId: '1',
     name: 'attacker',
@@ -56,10 +56,10 @@ describe("Player Stats Updates", () => {
 
   const playerMap = new Map([
     [attacker.steamId, attacker],
-    [victim.steamId, victim],
+    [victim.steamId, victim]
   ]);
 
-  it("An incap should be added for an attacker, and a fall should be added for a victim", () => {
+  it('An incap should be added for an attacker, and a fall should be added for a victim', () => {
     addIncap(
       playerMap,
       {
@@ -78,7 +78,7 @@ describe("Player Stats Updates", () => {
     }
   });
 
-  it("A kill should be added for an attacker, and a death should be added for a victim", () => {
+  it('A kill should be added for an attacker, and a death should be added for a victim', () => {
     addDeath(
       playerMap,
       {
@@ -97,7 +97,7 @@ describe("Player Stats Updates", () => {
     }
   });
 
-  it("A teamkill should be added for an attacker and a teamkilled should be added for a victim", () => {
+  it('A teamkill should be added for an attacker and a teamkilled should be added for a victim', () => {
     addDeath(
       playerMap,
       {
@@ -116,7 +116,7 @@ describe("Player Stats Updates", () => {
     }
   });
 
-  it("A revive should be added for a reviver and a revived should be added for a victim", () => {
+  it('A revive should be added for a reviver and a revived should be added for a victim', () => {
     addRevive(
       playerMap,
       {

@@ -1,12 +1,9 @@
-import { Player, PlayerServer, UpdatePlayersOptions } from '../typings/players';
+import { Death, Incap, Player, PlayerServer, Revive, UpdatePlayersOptions } from '../types';
 import { chunk } from 'lodash';
 import env from '../util/env';
 import redis from './redis';
 import keys from '../util/keys';
 import { shouldIgnoreLayer } from '../util/helpers';
-import { Death } from '../typings/death';
-import { Incap } from '../typings/incap';
-import { Revive } from '../typings/revive';
 
 /**
  *

@@ -1,9 +1,7 @@
-![docs/logo.png](docs/logo.png)
-
 TT Stats Updater
 ===
 
-> A node process that connects to the squadjs database and periodically syncs player's stats and stores them in redis for realtime retrieval. This process is a companion to the tt-squad-bot project which can be found here [TT Squad Bot](https://github.com/z1haze/tt-squad-bot)
+> Behold! An open source stat tracker bot for your Squad community! This project, while it does require a bit of setup will allow players in your community to check their stats instantly! This project piggybacks off SquadJS, specifically the dblog plugin. It ain't perfect, but it's somethin!
 
 #### The current version of this process tracks the following data:
 
@@ -46,7 +44,7 @@ Ensure you have copied the .env.example file into your project root and populate
 
 First and foremost you must have the following installed:
 
-1. Node.js 17 or later (refer to the nvmrc file for the exact version)
+1. Node.js 18.19.0 or later (refer to the nvmrc file for the exact version)
 2. MySQL/MariaDB
 3. Squad JS running the DBLOG plugin
 4. Redis Server
